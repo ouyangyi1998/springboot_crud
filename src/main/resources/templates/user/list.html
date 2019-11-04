@@ -25,15 +25,27 @@
             <th scope="row" th:text="${user.id}"></th>
             <td th:text="${user.username}"></td>
             <td th:text="${user.password}"></td>
-            <td><a th:href="@{/toEdit(id=${user.id})}">edit</a> </td>
-            <td><a th:href="@{/delete(id=${user.id})}">delete</a> </td>
+            <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>
+            <td><a th:href="@{/delete(id=${user.id})}">delete</a></td>
         </tr>
         </tbody>
     </table>
 </div>
-<div class="form-group">
-    <div class="col-sm-2 control-label">
-        <a th:href="@{/toAdd}" class="btn btn-info" >add</a>
+<div class=" container">
+    <div class=" row">
+        <div class="col-sm-1">
+            <a th:href="@{/toAdd}" class="btn btn-info">add</a>
+        </div>
+        <div class="col-sm-1">
+            <a th:href="@{/}" class="btn btn-info">back</a>
+        </div>
+        <div class="col-sm-8"></div>
+        <div class="col-sm-1">
+            <a th:href="@{/toNextPage}" class="btn-info btn">next</a>
+        </div>
+        <div class="col-sm-1">
+            <a th:href="@{/toLastPage}" class="btn btn-info">last</a>
+        </div>
     </div>
 </div>
 

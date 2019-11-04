@@ -6,9 +6,10 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 </head>
 <body class="container">
-<h1 align="center" class="h1">登录账号</h1>
-<div class="with:30%">
-    <form th:action="@{/login}" method="post" class="form-group-sm">
+<h1 align="center">登录账号</h1>
+<h5 style="fo: red;" align="center" th:text="${msg}">default</h5>
+<div class="col-sm-offset-4 col-sm-4" align="center">
+    <form th:action="@{/login}" method="post" >
         <div class="form-group">
             <label for="username" class="col-sm-2 control-label">username</label>
             <div>
@@ -21,15 +22,15 @@
                 <input class="form-control" id="password" type="password" name="password" placeholder="password">
             </div>
         </div>
-        <div class="form-group" align="">
-            <div class="col-sm-offset-2 control-label">
-            <input value="submit" type="submit" class="btn btn-info">
+        <div class="form-group">
+            <div class="control-label">
+                <input value="submit" type="submit" class="btn btn-info">
+
                 <a th:href="@{/toRegister}" class="btn btn-info">register</a>
             </div>
         </div>
     </form>
 </div>
-
 
 
 </body>

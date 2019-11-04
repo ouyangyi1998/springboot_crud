@@ -5,11 +5,12 @@
     <title>register</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 </head>
-<body class="container">
-<h1>注册账号</h1>
 
-<div class="with:80%">
-    <form th:action="@{/register}" method="post" class="form-group-sm">
+<body class="container">
+<h1 align="center" class="ui-icon-trash">注册账号</h1>
+<h5 style="color: red;" align="center" th:text="${msg}"></h5>
+<div class="col-sm-offset-4 col-sm-4" align="center">
+    <form th:action="@{/register}" method="post" >
         <div class="form-group">
             <label for="username" class="col-sm-2 control-label">username</label>
             <div>
@@ -22,9 +23,11 @@
                 <input class="form-control" id="password" type="password" name="password" placeholder="password">
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 control-label">
-                <input name="submit" type="submit" class="btn btn-info">
+        <div class="form-group ">
+            <div class=" control-label">
+                <input value="submit" type="submit" class="btn btn-info">
+
+                <a th:href="@{/toLogin}" class="btn btn-info">back</a>
             </div>
         </div>
     </form>
