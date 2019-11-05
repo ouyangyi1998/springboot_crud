@@ -35,12 +35,8 @@ public class userController {
             pageNumber=1;
         }else
         {
-            List<user> list=userService.getUserList();
-            for(user user:list)
-            {
-                number++;
-            }
-            int pageTotal=(number+pageSize-1)/pageSize;
+
+            int pageTotal=getPageNumber();
           if(pageNumber>pageTotal)
           {
               pageNumber=pageTotal;
@@ -99,13 +95,23 @@ public class userController {
     }
 
     @RequestMapping("/toAdd")
-    public String toAdd() {
+    public String toAdd(Model model,user user) {
         return "user/userAdd";
     }
 
     @RequestMapping("/Add")
-    public String add(user user) {
-        userService.saveUser(user);
+    public String add(user user,Model model) {
+        if (user.getPassword().equals("") || user.getUsername().equals("")) {
+            model.addAttribute("msg", "添加失败");
+            return "user/userAdd";
+        }
+        user user1 = userService.findUserByName(user.getUsername());
+
+        if(user1!=null)
+        {
+            model.addAttribute("msg", "用户名存在");
+            return "user/userAdd";
+        }
         return "redirect:/list";
     }
 
@@ -143,12 +149,7 @@ public class userController {
             pageNumber=1;
         }else
         {
-            List<user> list=userService.getUserList();
-            for(user user:list)
-            {
-                number++;
-            }
-           int pageTotal=(number+pageSize-1)/pageSize;
+           int pageTotal=getPageNumber();
 
             if(pageNumber>pageTotal)
             {
@@ -171,12 +172,8 @@ public class userController {
             pageNumber=1;
         }else
         {
-            List<user> list=userService.getUserList();
-            for(user user:list)
-            {
-                number++;
-            }
-            int pageTotal=(number+pageSize-1)/pageSize;
+
+            int pageTotal=getPageNumber();
             if(pageNumber>pageTotal)
             {
                 pageNumber=pageTotal;
@@ -187,5 +184,17 @@ public class userController {
         List<user> all=users.getContent();
         model.addAttribute("users",all);
         return "user/list";
+    }
+    public int getPageNumber()
+    {
+        int number=0;
+        int pageTotal;
+        List<user> list=userService.getUserList();
+        for(user user:list )
+        {
+            number++;
+        }
+        pageTotal=(number+pageSize-1)/pageSize;
+        return pageTotal;
     }
 }
